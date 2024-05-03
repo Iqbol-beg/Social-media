@@ -28,8 +28,8 @@ class UserAPIView(APIView):
         return Response(serializer.data)
 
 class RegisterApiView(APIView):
-      permission_classes=(IsAuthenticated,)
-      def put(self, request):
+    
+      def post(self, request):
             user=request.user
             serializer=RegisterSerializer(user, data=request.data)
             serializer.is_valid(raise_exception=True)

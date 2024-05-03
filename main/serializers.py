@@ -11,33 +11,33 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    username=serializers.CharField(required=True,   min_length=4)
-    password=serializers.CharField(required=True,   min_length=4, write_only=True)
-
+    # username=serializers.CharField(required=True,   min_length=4)
+    # password=serializers.CharField(required=True,   min_length=4, write_only=True)
+    # confirm_password=serializers.CharField(required=True,   min_length=4, write_only=True)
     class Meta:
         model=User
-        fields=['username', 'first_name', 'last_name', 'password', 'confirm_password']
+        fields=['username', 'password']
     
-    def validate(self, attrs):
-        confirm_password = attrs.get('confirm_password')
-        password = attrs.get('password')
-        username = attrs.get('username')
+    # def validate(self, attrs):
+    #     confirm_password = attrs.get('confirm_password')
+    #     password = attrs.get('password')
+    #     username = attrs.get('username')
 
-        if confirm_password != password:
-                data={  
-                'status': False,
-                'message': "Password dont match",
-                        }
-                raise ValidationError(data)
+    #     if confirm_password != password:
+    #             data={  
+    #             'status': False,
+    #             'message': "Password dont match",
+    #                     }
+    #             raise ValidationError(data)
             
 
-        if not username.isalpha():
-            data={
-                'status': True,
-                'message': "usernam faqat harflardan iborat bolsin",
-                        }
-            raise ValidationError(data)
-        return attrs
+    #     if not username.isalpha():
+    #         data={
+    #             'status': True,
+    #             'message': "usernam faqat harflardan iborat bolsin",
+    #                     }
+    #         raise ValidationError(data)
+    #     return attrs
     
 
 class LoginSerializer(serializers.Serializer):
